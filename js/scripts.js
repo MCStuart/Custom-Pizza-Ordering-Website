@@ -1,8 +1,8 @@
 // Business Logic
-
 // Starts new pizza order
 function PizzaOrder() {
-  this.pizzas = []
+  this.pizzas = [],
+  this.currentId = 0
 };
 // Starts new individual pizza
 function Pizza(topping, size) {
@@ -10,23 +10,34 @@ function Pizza(topping, size) {
   this.size = size,
   this.price = 10
 };
+// Assign each pizza an Id
+PizzaOrder.prototype.assignId = function() {
+  this.currentId += 1;
+  return this.currentId;
+}
 // Add pizza to order
 PizzaOrder.prototype.addPizza = function(pizza) {
+  pizza.id = this.assignId();
   this.pizzas.push(pizza);
 };
+// Add size of pizza
+Pizza.prototype.addSize = function(size) {
+  this.size = size;
+}
 // Add toppings to pizza
 Pizza.prototype.addToppings = function(topping) {
   this.toppings.push(this.topping);
 };
 // Pizza price by size options
-Pizza.prototype.priceBySize = function() {
+Pizza.prototype.priceBySize = function(size) {
+  this.size = size;
   if(this.size === "large"){
     this.price;
-  } else if(this.size === "extraLarge") {
+  } else if (this.size === "extraLarge") {
     this.price += 4;
-  } else if (this.size === "personalPizza"){
+  } else if (this.size === "personalPizza") {
     this.price += 7;
-  }else{
+  } else {
     console.log("There is an error for pizza size selection");
   }
 };
@@ -61,16 +72,15 @@ $(document).ready(function() {
     event.preventDefault();
     $("button#pizzaButton").hide();
     $("form.pizzaOptions").show();
-    var pizza = new Pizza();
   });
   $("form.pizzaOptions").submit(function(event) {
     event.preventDefault();
-    var topping = $("input[id='topping']:checked")
-    // var topping = $("input[id='topping']:checked").each(function() {
-    //   pizza.addToppings(topping);
-    // });
-    console.log(topping.get());
-    $("div.checkout").show();
+    var pizza = new Pizza();
+    var size = $(this.size).val();
+    pizza.priceBySize(size);
+    pizzaOrder.addPizza(pizza);
+    console.log(pizza.price);
+    console.log(pizzaOrder.pizzas);
   });
   $("form.pizzaOptions").hide();
 });
