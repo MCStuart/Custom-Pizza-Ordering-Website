@@ -5,3 +5,22 @@ form.pizzaOptions {
 div.checkout {
   display: none;
 }
+
+.jumbotron {
+  background-color: #dba24a;
+}
+
+body {
+  background-color: #e1d800;
+}
+
+.pizzaOptions {
+  background-color: #fffa8a;
+}
+
+img#imageTop {
+  float: right;
+  padding-right: 5rem;
+  height: 10rem;
+  width: auto;
+}
