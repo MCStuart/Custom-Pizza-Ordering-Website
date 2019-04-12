@@ -5,8 +5,8 @@ function PizzaOrder() {
   this.currentId = 0
 };
 // Starts new individual pizza
-function Pizza(topping, size) {
-  this.toppings = [],
+function Pizza(toppings, size) {
+  this.toppings = toppings,
   this.size = size,
   this.price = 10
 };
@@ -25,8 +25,8 @@ Pizza.prototype.addSize = function(size) {
   this.size = size;
 }
 // Add toppings to pizza
-Pizza.prototype.addToppings = function(topping) {
-  this.toppings.push(this.topping);
+Pizza.prototype.addToppings = function(toppings) {
+  this.toppings = toppings;
 };
 // Pizza price by size options
 Pizza.prototype.priceBySize = function(size) {
@@ -42,22 +42,22 @@ Pizza.prototype.priceBySize = function(size) {
   }
 };
 // Pizza price by toppings
-Pizza.prototype.priceByToppings = function() {
-  if(this.toppings === "noCheese") {
+Pizza.prototype.priceByToppings = function(topping) {
+  if(this.topping === "noCheese") {
     this.price -= 1;
-  } if(this.toppings === "anchovies") {
+  } if(this.topping === "anchovies") {
     this.price += 2;
-  } if (this.toppings === "mushrooms") {
+  } if (this.topping === "mushrooms") {
     this.price -= 1;
-  } if(this.toppings === "olives") {
+  } if(this.topping === "olives") {
     this.price -= 1;
-  }  if (this.toppings === "pineapple") {
+  }  if (this.topping === "pineapple") {
     this.price += 3;
-  } if(this.toppings === "clams") {
+  } if(this.topping === "clams") {
     this.price += 4;
-  } if (this.toppings === "peas") {
+  } if (this.topping === "peas") {
     this.price  += 1;
-  } else if (this.toppings === "") {
+  } else if (this.topping === "") {
     this.price;
   } else {
     console.log("There is an error for pizza topping selection");
@@ -79,7 +79,12 @@ $(document).ready(function() {
     var size = $(this.size).val();
     pizza.priceBySize(size);
     pizzaOrder.addPizza(pizza);
-    console.log(pizza.price);
+    var toppings = [];
+    $.each($("input:checkbox[name=topping]:checked"), function() {
+      toppings.push($(this).val());
+    });
+    console.log(toppings);
+    pizza.addToppings(toppings);
     console.log(pizzaOrder.pizzas);
   });
   $("form.pizzaOptions").hide();
