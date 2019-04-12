@@ -63,11 +63,13 @@ Pizza.prototype.priceByToppings = function(topping) {
     console.log("There is an error for pizza topping selection");
   }
 }
-//
+// turn topping camelCase into text
+Pizza.prototype.arrayDisplay = function() {
+  this.toppings.toString();
+}
 // User Interface Logic
 $(document).ready(function() {
   var pizzaOrder = new PizzaOrder();
-  var pizza;
   $("button#pizzaButton").click(function(event) {
     event.preventDefault();
     $("button#pizzaButton").hide();
@@ -94,7 +96,7 @@ $(document).ready(function() {
     };
     $("form.pizzaOptions").hide();
     $("div.checkout").show();
-    $("h4.penultimateTransmisssion").append("You ordered a " + $("#size").children("option:selected").text() + " pizza with " + pizza.toppings + ".");
-    $("h4.finalTransmisssion").append("Your final total will be $" + pizza.price + ".");
+    $("h4.penultimateTransmisssion").append("You ordered a " + $("#size").children("option:selected").text() + " pizza with " + pizza.toppings.toString() + ".");
+    $("h4.finalTransmisssion").append("Your order total will be $" + pizza.price + ".");
   });
 });

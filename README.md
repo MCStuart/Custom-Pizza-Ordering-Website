@@ -36,10 +36,9 @@ This work is the sole ownership of the Author's. Distribution is permitted under
 ### Behavioral Driven Development Steps:
 | Behavior | Input | Output |
 | ------------- |:-------------:| -----:|
-| | |
-| | |
-| | |
-| | |
-| | |
-| | |
-| | |
+| Initialize Order | 'start' | new pizza order |
+| Create new Pizza Object | 'order pizza' | new Pizza |
+| Ask what size | 'Extra large' | +$4 to base price |
+| Ask what toppings | pineapple |  +$3 to base price |
+| Get final price of pizza | Extra Large w/ Pineapple | +$4, +$3 ($10) = $17 total |
+| Return size, toppings, and price| large, anchovies | 'you ordered (size) with (toppings) for $(price)' |
