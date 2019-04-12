@@ -12,9 +12,9 @@
     <div class="container">
       <div class="jumbotron">
         <h1>Welcome To Cal's Own Pizza Restaurant!</h1>
-        <h3>We're still in business because we knead the dough</h3>
+        <h3>We're still in business because we really knead the dough</h3>
       </div>
-      <button type="button" name="button">Click here to start your order</button>
+      <button id="pizzaButton" type="button" class="btn btn-danger">Click here to start your order</button>
       <form class="pizzaOptions">
         <div class="sizeOptions">
           <select class="custom-select custom-select-md mb-3">
@@ -68,7 +68,12 @@
             </label>
           </div>
         </div>
+        <button type="submit" class="btn btn-danger">Finish with Pizza</button>
       </form>
+      <div class="checkout">
+        <h3>Here is your order for review:</h3>
+        <h4>Pizza</h4>
+      </div>
     </div>
   </body>
 </html>
