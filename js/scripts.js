@@ -63,6 +63,7 @@ Pizza.prototype.priceByToppings = function(topping) {
     console.log("There is an error for pizza topping selection");
   }
 }
+//
 // User Interface Logic
 $(document).ready(function() {
   var pizzaOrder = new PizzaOrder();
@@ -74,6 +75,11 @@ $(document).ready(function() {
   });
   $("form.pizzaOptions").submit(function(event) {
     event.preventDefault();
+    checked = $("input[type=checkbox]:checked").length;
+      if(!checked) {
+        alert("You must check at least one option");
+        return false;
+      }
     var pizza = new Pizza();
     var size = $(this.size).val();
     pizza.priceBySize(size);
