@@ -43,27 +43,26 @@ Pizza.prototype.priceBySize = function(size) {
 };
 // Pizza price by toppings
 Pizza.prototype.priceByToppings = function(topping) {
-  if(this.topping === "noCheese") {
+  if(topping === "noCheese") {
     this.price -= 1;
-  } if(this.topping === "anchovies") {
+  } else if(topping === "anchovies") {
     this.price += 2;
-  } if (this.topping === "mushrooms") {
+  } else if (topping === "mushrooms") {
     this.price -= 1;
-  } if(this.topping === "olives") {
+  } else if(topping === "olives") {
     this.price -= 1;
-  }  if (this.topping === "pineapple") {
+  }  else if (topping === "pineapple") {
     this.price += 3;
-  } if(this.topping === "clams") {
+  } else if(topping === "clams") {
     this.price += 4;
-  } if (this.topping === "peas") {
+  } else if (topping === "peas") {
     this.price  += 1;
-  } else if (this.topping === "") {
+  } else if (topping === "") {
     this.price;
   } else {
     console.log("There is an error for pizza topping selection");
   }
 }
-
 // User Interface Logic
 $(document).ready(function() {
   var pizzaOrder = new PizzaOrder();
@@ -83,9 +82,13 @@ $(document).ready(function() {
     $.each($("input:checkbox[name=topping]:checked"), function() {
       toppings.push($(this).val());
     });
-    console.log(toppings);
     pizza.addToppings(toppings);
-    console.log(pizzaOrder.pizzas);
+    for (var i = 0; i < pizza.toppings.length; i++) {
+      pizza.priceByToppings(toppings[i]);
+    };
+    $("form.pizzaOptions").hide();
+    $("div.checkout").show();
+    $("h4.penultimateTransmisssion").append("You ordered a " + $("#size").children("option:selected").text() + " pizza with " + pizza.toppings + ".");
+    $("h4.finalTransmisssion").append("Your final total will be $" + pizza.price + ".");
   });
-  $("form.pizzaOptions").hide();
 });
